@@ -1,0 +1,33 @@
+body{
+  background-color: #240c6d;
+
+  color: #4444;
+}
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 2px 4px 6px rgba(28,6,49,0.1);
+  background-color: white;
+}
+.container-title {
+  font-size: 16pt;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+button {
+  text-decoration: none;
+  background: green;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 20px;
+  height: 40px;
+  align-self: center;
+  font-family: monospace;
+  min-width: 100px;
+}
