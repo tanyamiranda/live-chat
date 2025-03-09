@@ -1,6 +1,5 @@
 body{
   background-color: #240c6d;
-
   color: #4444;
 }
 .container {
@@ -27,7 +26,6 @@ button {
   border-radius: 10px;
   padding: 10px 20px;
   height: 40px;
-  align-self: center;
   font-family: monospace;
   min-width: 100px;
 }

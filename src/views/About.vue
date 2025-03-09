@@ -44,7 +44,7 @@ export default {
 <style>
 
 .about-details {
-  padding: 20px;
+  padding: 0 20px;
   max-width: 400px;
   margin: auto;
   line-height: 25px;

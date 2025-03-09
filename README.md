@@ -46,13 +46,13 @@ firebase login
 firebase init
 ``` 
 This will prompt you with the following:
-1. <b>Which Firebase features do you want to set up for this directory?</b> Select Hosting only.
+1. <b>Which Firebase features do you want to set up for this directory?</b> Only select <b>Hosting</b>
 2. <b>Select New or Existing Project</b> I would create project ahead of time, but you can create it here too. 
-3. <b>What do you want to use as your public directory?</b> Enter "dist", this is the folder vue compiles to so this will be the new default directory for your site.
+3. <b>What do you want to use as your public directory?</b> Enter <b>dist</b> (vue compiles to thisfolder)
 4. <b>Configure as a single-page app (rewrite all urls to /index.html)?</b> Enter <b>Yes</b>
-5. <b>Set up automatic builds and deploys with GitHub? </b> Enter No
+5. <b>Set up automatic builds and deploys with GitHub? </b> Enter <b>No</b>
 
-### Run build command to build files to the new dist directory
+### Run build command to build files to the new "dist" directory
 ```
 npm run build
 ```
