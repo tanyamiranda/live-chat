@@ -8,6 +8,7 @@
   <router-view/>
   <div class="footer">
     <p v-if="!hideAbout" class="about-link" @click="aboutLink">about this app</p>
+    <p v-if="hideAbout" class="about-link" @click="backToLiveChat">back to live chat</p>
   </div>
 </template>
 
@@ -27,7 +28,11 @@ export default {
       router.push({name:"about"})
     }    
 
-    return {aboutLink, hideAbout}
+    const backToLiveChat = () => {
+      router.push({name:"welcome"})
+    }
+
+    return {aboutLink, hideAbout, backToLiveChat}
   },
 }
 </script>

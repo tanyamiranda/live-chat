@@ -6,7 +6,6 @@
       <div>
         <ul>
           <li>There is only one chat room.</li>
-          <li>Chat entries older than three days are deleted.</li>
           <li>There is a 10,000 chat entry limit.</li>
           <li>Emails are NOT validated.</li>
         </ul>
@@ -14,7 +13,6 @@
       <p>If you see any issues or just want to talk to the developer, please use the link below.</p>
       <center>
         <p class="link" @click="contactDeveloper">Contact Developer</p>
-        <p class="link" @click="backToLiveChat">Back to Live Chat</p>
       </center>
 
     </div>  
@@ -32,11 +30,7 @@ export default {
       window.open('https://tanyamiranda.github.io/', '_blank'); // Replace with your desired URL
     }    
 
-    const backToLiveChat = () => {
-      router.push({name:"welcome"})
-    }
-
-    return {backToLiveChat, contactDeveloper}
+    return {contactDeveloper}
   }
 }
 </script>

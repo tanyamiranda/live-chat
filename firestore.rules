@@ -1,12 +1,20 @@
+// This file was supposed to be used to deploy rules to firestore for the app.
+// But because the firestore db is shared across multiple apps, I just applied
+// the rules manually in the db. 
+//
+// The following data would be included in the firebase.json file before
+// the "hosting" object in order to implement these rules in the firestore db
+// when the application is deployed to firebase
+// 
+// "firestore": {
+//   "rules": "firestore.rules"
+// } ,
+//
+
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Anyone can read blog posts
-    match /blog-posts/{document=**} {
-      allow read, write;
-    }
 
     // Only allow acces to authenticated users
     match /live-chat/{document=**} {
@@ -14,12 +22,4 @@ service cloud.firestore {
     }
   }
 }
-
-// ORIGINAL
-//service cloud.firestore {
-//  match /databases/{database}/documents {
-//    match /{document=**} {
-//      allow read, write: if request.time < timestamp.date(2025, 3, 15);
-//    }
-//  }
-//}
+ 
