@@ -2,12 +2,12 @@
   <div class="welcome container">
     <p class="container-title">About This App</p>
     <div class="about-details">
-      <p>This live chat app is built with Vue. There are limitations.</p>
+      <p>This live chat app is built with Vue and is used for learning purposes only. There are limitations.</p>
       <div>
         <ul>
           <li>There is only one chat room.</li>
           <li>Chat entries older than three days are deleted.</li>
-          <li>There is a 1000 entry limit to prevent spamming.</li>
+          <li>There is a 10,000 chat entry limit.</li>
           <li>Emails are NOT validated.</li>
         </ul>
       </div>
