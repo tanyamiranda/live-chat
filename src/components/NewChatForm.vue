@@ -13,7 +13,6 @@
 <script>
 import getUser from '@/composables/getUser'
 import {ref} from 'vue'
-import {timestamp} from '@/firebase/config'
 import useCollection from '@/composables/useCollection'
 
 export default {
@@ -21,18 +20,16 @@ export default {
 
     const {user} = getUser()
     const {error, addDocument} = useCollection()
-    const collectionName = "live-chat"
     const message = ref("")
 
     const handleSubmit = async() => {
       const chat = {
         name: user.value.displayName,
         email: user.value.email,
-        message: message.value,
-        createdAt: timestamp
+        message: message.value
       }
 
-      await addDocument(collectionName,chat)
+      await addDocument(chat)
 
       if (!error.value)
         message.value = ""

@@ -21,9 +21,8 @@ export default {
   setup() {
 
     const {documents, error, getCollectionDocuments} = getCollection()
-    const collectionName = "live-chat"
 
-    getCollectionDocuments(collectionName, "createdAt", "asc")
+    getCollectionDocuments("createdAt", "asc")
 
     const formattedDocuments = computed(() => {
       if (documents.value) {

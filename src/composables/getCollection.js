@@ -1,5 +1,5 @@
 import { ref, watchEffect } from "vue";
-import { projectFirestoreDB } from '../firebase/config'
+import { projectFirestoreDB,an} from '../firebase/config'
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 const getCollection = () => {
@@ -8,13 +8,13 @@ const getCollection = () => {
   const loading = ref(false);
   const error = ref(null);
 
-  const getCollectionDocuments = async (collectionName, fieldName, order = "asc") => {
+  const getCollectionDocuments = async (fieldName, order = "asc") => {
     loading.value = true;
     error.value = null;
 
     try {
 
-      let collectionRef = collection(projectFirestoreDB, collectionName);
+      let collectionRef = collection(projectFirestoreDB, an);
       let q = fieldName ? query(collectionRef, orderBy(fieldName, order)) : collectionRef;
 
       // Listen for real-time updates

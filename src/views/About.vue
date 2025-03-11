@@ -11,10 +11,8 @@
         </ul>
       </div>
       <p>If you see any issues or just want to talk to the developer, please use the link below.</p>
-      <center>
-        <p class="link" @click="contactDeveloper">Contact Developer</p>
-      </center>
-
+      <p class="link" @click="contactDeveloper">Contact Developer</p>
+      
     </div>  
   </div>
 </template>
@@ -48,6 +46,8 @@ export default {
   text-decoration: underline;
   cursor: pointer;
   text-underline-offset: 3px;
+  text-align: center;
+  padding: 20px 10px;
 }
 
 ul {

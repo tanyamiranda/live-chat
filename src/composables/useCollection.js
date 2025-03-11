@@ -1,20 +1,20 @@
 import {ref} from 'vue'
-import {projectFirestoreDB, COLLECTION_NAME} from '@/firebase/config'
+import {projectFirestoreDB, timestamp, an} from '@/firebase/config'
 import {collection, addDoc} from 'firebase/firestore'
 
 const useCollection = () => {
 
   const error = ref(null)
 
-  const addDocument = async(collectionName, doc) => {
+  const addDocument = async(doc) => {
     error.value = null;
 
     try {
 
-      const collectionRef = collection(projectFirestoreDB, collectionName);
+      doc.createdAt = timestamp
+      const collectionRef = collection(projectFirestoreDB, an);
       const docRef = await addDoc(collectionRef, doc)
 
-      //await projectFirestore.collection(collectionName).add(doc)
     }
     catch(err) {
       console.log("err", err.message)
