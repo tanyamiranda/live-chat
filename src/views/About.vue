@@ -3,13 +3,6 @@
     <p class="container-title">About This App</p>
     <div class="about-details">
       <p>This live chat app is built with Vue and is used for learning purposes only. There are limitations.</p>
-      <div>
-        <ul>
-          <li>There is only one chat room.</li>
-          <li>There is a 10,000 chat entry limit.</li>
-          <li>Emails are NOT validated.</li>
-        </ul>
-      </div>
       <p>If you see any issues or just want to talk to the developer, please use the link below.</p>
       <p class="link" @click="contactDeveloper">Contact Developer</p>
       

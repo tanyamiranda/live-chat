@@ -15,7 +15,7 @@ Once you have created these elements, you can continue.
 npm install
 ```
 
-### Setup Firebase environment variables
+### Set Firebase environment variables
 In the **.env.local** and **.env.production** files, add the following variables containing the credentials for the Firestore database you created earlier. These values can be found in the firebase console under your project settings. 
 
 **NOTE:** If you don't have these files, you will have to create them in your project's base folder. You cannot deploy to firebase without a production environment file.
@@ -29,7 +29,7 @@ VUE_APP_FIREBASE_MESSAGING_SENDER_ID=new-firebase-value
 VUE_APP_FIREBASE_APP_ID=new-firebase-value
 ```
 
-### Setup access codes in Firestore DB for registraion
+### Create access codes in Firestore DB for user registraion
 This app allows registration only if the user enters a valid access code. This is a small level of security to prevent DOS or other malicious attempts for your site. 
 
 In firebase, you will manually create a collection that contains unique codes to validate if the request to signup is being made with your permission. The collection will contain documents with the fields {"app-name", "code"}. You can have multiple entries per application. Sample entries for the "chat-app" application would be as follows: 
@@ -39,7 +39,7 @@ app-name="chat-app", code="marysaccesscode"
 app-name="chat-app", code="john3i2d0s"
 ```
 
-### Setup application environment variables
+### Set application environment variables
 In the **.env.local** and **.env.production** files, set the following variables to the collection you created to hold access codes. If, for example, you create a collection called "ValidationCodes" to hold the documents for the "chat-app" application, the variables would be as follows:
 ```
 VUE_APP_AC=ValidationCodes
@@ -92,3 +92,11 @@ npm run build
 ```
 firebase deploy
 ```
+## Improvements To Be Made
+### Add more security
+I added a small layer of security for learning purposes as well as to deter DOS and malicious attacks, but it's totally superficial since the Firebase credentials are still exposed. In order to address this, the next steps should be taken:
+
+1. Create firebase function to create user.
+2. Create firebase function to take in chats.
+3. Remove all credentials from front end app since it is no longer needed, and refactor code as necessary.
+
