@@ -46,8 +46,29 @@ VUE_APP_AC=ValidationCodes
 VUE_APP_AN=chat-app
 ```
 
+### Add security to firebase
+The firebase/firestore credentials are exposed, so anyone can read the db if they gain access to the credentials. To mitigate this a bit, add a rule to the firestore db that will preven unauthenticated users from accessing the chat data collection, and also only allow read requests to the collection holding validation codes.
 
-### Compiles and hot-reloads for development
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Restrict access to the "accessCodes" collection
+    match /ValidationCodes/{doc} {
+      allow read;
+    }
+
+    // Only allow acces to authenticated users
+    match /chat-app/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+```
+### Compile (with hot-reload) for development
 ```
 npm run serve 
 ```
@@ -56,7 +77,7 @@ npm run serve
 
 ![Sonny and Mariel high fiving.](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif 'High Five')
 
-Now that you have tested the app locally in your development environment, you are ready to deploy the app to your new firebase project.
+Now that you have tested the app locally in your development environment, you are ready to setup your firebase dev environment so that you can deploy the app to your new firebase project.
 
 ## Firebase Setup
 
@@ -92,11 +113,42 @@ npm run build
 ```
 firebase deploy
 ```
-## Improvements To Be Made
-### Add more security
-I added a small layer of security for learning purposes as well as to deter DOS and malicious attacks, but it's totally superficial since the Firebase credentials are still exposed. In order to address this, the next steps should be taken:
 
-1. Create firebase function to create user.
-2. Create firebase function to take in chats.
-3. Remove all credentials from front end app since it is no longer needed, and refactor code as necessary.
+## OPTIONAL: Lock your Firebase API to your production domain(s). 
 
+Your firebase credentials stored in the **.env.production** file can be read by hackers from your production website. By locking your API to your production domain, you can protect your site from Cross-Site Request Forgery (CSRF), essentially preventing hackers from using your credentials in their own app and accessing your data and authenticating users.
+
+Before proceeding, read [**Development Environment Restriction**](#development-environment-restriction) below.
+
+### Get your production domains from Firebase
+Go into your project in firebase and go to "Hosting" service and find all the domains set up for your app. If you have a custom domain, this will be included in this list. You can restrict access to custom domain if you wish.
+
+### Setup API Restrictions in Google Developer Console
+Go to the Google Develper Console. Currently, the url is https://console.cloud.google.com/apis/ , but this may change. Do a search to get the correct site.  
+
+1. Select your project from the list of projects, and then go to **Credentials** on the menu. 
+
+2. Under **API Keys**, find the Browser key created by firebsae when you created the hosting site.
+
+3. Under **Application restrictions**, select "Websites" and add your domains to the list.  
+
+4. Click Save. Changes normally take up to 5 minutes to take effect.
+
+For more information, read the [documentation](https://cloud.google.com/docs/authentication/api-keys) about this feature from Google.
+
+
+## Development Environment Restriction 
+
+Once you lock your production Firebase APIs, the same credentials will no longer work in your development environment. There are several ways you can securly work around this security feature and still keep your production credentials securly locked to your production domains. 
+
+You can create a separate web app within Firebase (**without a Hosting site**) so that you can use that new API key in your local development environement to access the same data as production. Since this API key is not being used on any public website, this is relatively secure. Also, you can also create a new firestore database within the same project or within an entirely new project if you wish to completely separate development and production data. 
+
+Either way, the credential values would be stored in the **.env.local** file and would be different in the **.env.production** file. When deploying changes, firebase only looks at the **.env.production** file. 
+
+**IMPORTANT: Make sure github ignores these files**
+
+In the .gitignore file, enter the following if it's not already there:
+```
+# environment files
+.env.*
+```
